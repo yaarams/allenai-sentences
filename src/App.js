@@ -1,24 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import SearchBar from './components/Search/Search';
+import Sentence from './components/Sentence/Sentence';
+import {getSentences, annotateSentence} from './services/remoteServices';
+
+function displaySentences(sentences)  {
+  return sentences.map(({id, words}) => 
+    <Sentence id={id} words={words} annotate={annotateSentence} />
+  );
+}
 
 function App() {
+  const [sentences, setSentences] = useState([]);
+  const handleSearch = async word => {
+    const sentences = await getSentences(word);
+    setSentences(sentences.list);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Search for Sentences below
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <SearchBar search={handleSearch}/>
+        {sentences ? displaySentences(sentences) : <span>None</span>}
       </header>
+      
     </div>
   );
 }

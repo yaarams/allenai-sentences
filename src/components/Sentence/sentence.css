@@ -1,0 +1,52 @@
+button {
+    background: none;
+    /* border: none; */
+    border-radius: 10px;
+    display: block;
+    float: right;
+    margin-left: 20px;
+}
+
+.sentence {
+    max-width: 1000px;
+    margin: 0 auto;
+    border: 1px solid;
+    display: flex;
+}
+
+.sentence span {
+    padding: 20px;
+    line-height: 3em;
+    font-size: 16px;
+}
+
+[title]:after {
+    content: attr(title);
+    position: absolute;
+    z-index: 1;
+    top: -2.5em;
+    left: 30%;
+    padding: 5px;
+    font-size: 10px;
+    background-color: rgba(254, 254, 204, 0.5);
+    border: 1px #aaaaaa solid;
+    border-radius: 10px;
+}
+
+[title=PERSON]:after {
+ background-color: rgba(255, 204, 248, 0.5);
+}
+
+[title=DATE]:after {
+ background-color: rgba(204, 231, 255, 0.5);
+}
+
+[title=NUMBER]:after {
+ background-color: rgba(204, 255, 204, 0.5);
+}
+
+abbr {
+    background-color: #f0f0eb;
+    position: relative;
+    line-height: normal;
+}
